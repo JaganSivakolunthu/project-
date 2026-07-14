@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+class Solution {
+public:
+    int findClosestNumber(vector<int>& nums) {
+        int ans = nums[0];
+        for (int x : nums) {
+            // If current number is closer to zero
+            if (abs(x) < abs(ans)) {
+                ans = x;
+            }
+            // If both are equally close, choose the larger one
+            else if (abs(x) == abs(ans) && x > ans) {
+                ans = x;
+            }
+        }
+        return ans;
+    }
+};
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    vector<int> nums(n);
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> nums[i];
+    }
+    Solution obj;
+    int result = obj.findClosestNumber(nums);
+    cout << "Closest number to zero is: " << result << endl;
+    return 0;
+}
